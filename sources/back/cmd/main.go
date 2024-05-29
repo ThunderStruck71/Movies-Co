@@ -1,11 +1,13 @@
 package main
 
 import (
+	"back/api"
 	"back/internal/app/handler"
 	"back/internal/app/service"
 	"back/internal/domain/repository"
 	"context"
 	"github.com/joho/godotenv"
+	"github.com/labstack/echo/v4"
 	"github.com/spf13/viper"
 	"log"
 	"net/http"
@@ -42,7 +44,8 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
-	e := handlers.InitRoutes()
+	e := echo.New()
+	api.InitRoutes(e, handlers)
 
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
