@@ -6,6 +6,10 @@ import (
 	_ "github.com/lib/pq"
 )
 
+const (
+	moviesTable = "movies"
+)
+
 type Config struct {
 	Host     string
 	Port     string
