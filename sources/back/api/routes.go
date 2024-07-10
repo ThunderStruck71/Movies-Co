@@ -6,5 +6,9 @@ import (
 )
 
 func InitRoutes(e *echo.Echo, h *handler.Handler) {
-	e.GET("/", h.Home)
+	movies := e.Group("/api/lists")
+	{
+		movies.GET("/", h.GetAllMovies)
+		movies.GET("/:id", h.GetMovieById)
+	}
 }

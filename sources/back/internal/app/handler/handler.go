@@ -2,17 +2,12 @@ package handler
 
 import (
 	"back/internal/app/service"
-	"github.com/labstack/echo/v4"
-	"net/http"
 )
 
 type Handler struct {
+	services *service.Service
 }
 
-func NewHandler(service *service.Service) *Handler {
-	return &Handler{}
-}
-
-func (h *Handler) Home(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!\n")
+func NewHandler(services *service.Service) *Handler {
+	return &Handler{services: services}
 }
